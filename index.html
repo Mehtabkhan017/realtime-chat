@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LiveChat</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ── Username Modal ─────────────────────── -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-logo">💬</div>
+      <h1 class="modal-title">LiveChat</h1>
+      <p class="modal-sub">Real-time messaging, zero friction.</p>
+      <input
+        type="text"
+        id="username-input"
+        class="modal-input"
+        placeholder="Enter your name…"
+        maxlength="20"
+        autocomplete="off"
+      />
+      <button id="join-btn" class="modal-btn">Join Chat →</button>
+    </div>
+  </div>
+
+  <!-- ── Main Chat Layout ───────────────────── -->
+  <div id="app" class="app hidden">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <span class="logo-icon">💬</span>
+        <span class="logo-text">LiveChat</span>
+      </div>
+      <div class="sidebar-section-label">Online now</div>
+      <ul id="user-list" class="user-list"></ul>
+    </aside>
+
+    <!-- Chat Panel -->
+    <main class="chat-panel">
+
+      <!-- Top Bar -->
+      <header class="chat-header">
+        <div class="chat-header-info">
+          <span class="chat-title">General</span>
+          <span id="online-count" class="online-count">0 online</span>
+        </div>
+        <div class="header-dot"></div>
+      </header>
+
+      <!-- Messages -->
+      <div id="messages" class="messages"></div>
+
+      <!-- Input Row -->
+      <div class="input-row">
+        <input
+          type="text"
+          id="msg-input"
+          class="msg-input"
+          placeholder="Type a message…"
+          autocomplete="off"
+          maxlength="500"
+        />
+        <button id="send-btn" class="send-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Socket.io client (served automatically by the server) -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
