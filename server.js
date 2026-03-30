@@ -10,15 +10,19 @@ const path = require("path");
 const app = express();
 const server = http.createServer(app);
 
-// Attach Socket.io to the HTTP server
 const io = new Server(server, {
-  cors: { origin: "*" } // Allow all origins (fine for local dev)
+  cors: { origin: "*" }
 });
 
 const PORT = process.env.PORT || 3000;
 
-// Serve static files from the "public" folder
+// Serve static files
 app.use(express.static(path.join(__dirname, "public")));
+
+// Fallback route
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 // Keep track of connected users: { socketId -> username }
 const users = {};
